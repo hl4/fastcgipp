@@ -9,11 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: cmake config
+      run: cmake -S . -B out
+    - name: cmake build
+      run: cmake --build out
+    - name: cmake testing
+      run: cd out; ctest .
